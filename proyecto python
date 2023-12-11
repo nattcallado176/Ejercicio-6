@@ -1,0 +1,65 @@
+Vamos a desarrollar un código en Python que calcule el mínimo común múltiplo (mcm) de dos números naturales. Antes de entrar en el código, es importante entender algunos conceptos clave.
+
+El mínimo común múltiplo (mcm) de dos números es el menor número que es un múltiplo común de ambos. Un método eficiente para calcular el mcm de dos números \(a\) y \(b\) es utilizar la relación entre el mcm y el máximo común divisor (mcd), que está definido por la fórmula:
+
+\[
+\text{mcm}(a, b) = \frac{|a \cdot b|}{\text{mcd}(a, b)}
+\]
+
+Para calcular el mcd, podemos utilizar el algoritmo de Euclides, que consiste en sucesivas divisiones hasta obtener un residuo cero.
+
+Ahora, veamos el código Python que implementa esta lógica y proporciona una explicación detallada.
+
+```python
+def calcular_mcd(a, b):
+    """
+    Función para calcular el máximo común divisor (mcd) utilizando el algoritmo de Euclides.
+    """
+    while b:
+        a, b = b, a % b
+    return a
+
+def calcular_mcm(a, b):
+    """
+    Función para calcular el mínimo común múltiplo (mcm) utilizando la relación con el mcd.
+    """
+    if a == 0 or b == 0:
+        return 0
+    return abs(a * b) // calcular_mcd(a, b)
+
+def main():
+    """
+    Función principal que solicita dos números al usuario y muestra el mcm en la consola.
+    Explica el proceso paso a paso.
+    """
+    try:
+        # Solicitar al usuario dos números naturales
+        numero1 = int(input("Ingrese el primer número natural: "))
+        numero2 = int(input("Ingrese el segundo número natural: "))
+
+        # Validar que los números ingresados son naturales
+        if numero1 < 1 or numero2 < 1:
+            print("Por favor, ingrese números naturales mayores a cero.")
+        else:
+            # Calcular el mcm utilizando la función calcular_mcm
+            resultado = calcular_mcm(numero1, numero2)
+
+            # Mostrar el resultado al usuario con una explicación
+            print(f"El mínimo común múltiplo de {numero1} y {numero2} es: {resultado}")
+
+    except ValueError:
+        # Manejar la excepción si el usuario ingresa valores no válidos
+        print("Por favor, ingrese números naturales válidos.")
+
+if __name__ == "__main__":
+    # Llamar a la función principal
+    main()
+```
+
+Este código se divide en tres funciones:
+
+1. `calcular_mcd`: Calcula el máximo común divisor utilizando el algoritmo de Euclides.
+2. `calcular_mcm`: Utiliza la fórmula para calcular el mínimo común múltiplo en función del máximo común divisor.
+3. `main`: Solicita dos números al usuario, valida la entrada, calcula el mcm y muestra el resultado con una explicación.
+
+Este código está diseñado para ser comprensible y proporciona comentarios detallados en cada paso del proceso. Espero que sea útil y fácil de entender para el usuario.
